@@ -1,0 +1,22 @@
+import {version as version$1}from'./package.json.mjs';const version = version$1;
+/** First server protocol version that creates the single peer connection data channels as
+ * negotiated (fixed SCTP stream IDs) instead of opening them in-band. */
+const PROTOCOL_NEGOTIATED_DATA_CHANNELS = 18;
+const protocolVersion = PROTOCOL_NEGOTIATED_DATA_CHANNELS;
+/** Initial client protocol. */
+const CLIENT_PROTOCOL_DEFAULT = 0;
+/** Replaces RPC v1 protocol with a v2 data streams based one to support unlimited request /
+ * response payload length. */
+const CLIENT_PROTOCOL_DATA_STREAM_RPC = 1;
+/** "Data streams v2": the client knows how to receive a single-packet data stream (a stream whose
+ * entire payload is smuggled into the header packet, with no chunk/trailer packets). Senders only
+ * use the single-packet optimization when the recipient advertises at least this protocol. */
+const CLIENT_PROTOCOL_DATA_STREAM_V2 = 2;
+/** The client rebuilds transcription events from `lk.transcription` text streams, so senders may
+ * omit the legacy `Transcription` data packet. Read in both directions: a client advertising this
+ * needs no legacy packets, and an agent advertising it publishes every transcription on the
+ * `lk.transcription` stream channel. */
+const CLIENT_PROTOCOL_TRANSCRIPTION_STREAMS = 3;
+/** The client protocol version indicates what level of support that the client has for
+ * client <-> client api interactions. */
+const clientProtocol = CLIENT_PROTOCOL_TRANSCRIPTION_STREAMS;export{CLIENT_PROTOCOL_DATA_STREAM_RPC,CLIENT_PROTOCOL_DATA_STREAM_V2,CLIENT_PROTOCOL_DEFAULT,CLIENT_PROTOCOL_TRANSCRIPTION_STREAMS,PROTOCOL_NEGOTIATED_DATA_CHANNELS,clientProtocol,protocolVersion,version};//# sourceMappingURL=version.mjs.map
